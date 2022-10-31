@@ -88,19 +88,9 @@ class SubTitle extends StatelessWidget {
         style: TextStyle (
           color: Colors.grey,
           fontSize: addSize (context),
+          fontWeight: FontWeight.bold,
         ),
       ),
     ],
   );
-}
-
-class TestTile extends StatelessWidget {
-
-  // CONSTRUCTOR
-  const TestTile ({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
 }

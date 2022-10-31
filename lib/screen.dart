@@ -155,7 +155,7 @@ class HomeScreen extends StatelessWidget {
           ),
           const TextSpan (text: '  |  '),
           TextSpan (
-            recognizer: TapGestureRecognizer ()..onTap = () => launchUrlString ('https://github.com/ketafujiyama/woodbook/'),
+            recognizer: TapGestureRecognizer ()..onTap = () => launchUrlString ('https://github.com/keitafujiyama/wordbook-dart'),
             text: 'REPOSITORY',
           ),
         ],),
@@ -228,7 +228,6 @@ class ResultScreen extends StatelessWidget {
                 style: GoogleFonts.notoSans (
                   color: Colors.black,
                   fontSize: addSize (context),
-                  fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.w900,
                 ),
               ),
@@ -247,7 +246,6 @@ class ResultScreen extends StatelessWidget {
         const ListTile (),
         for (int i = 0; i < test.answers.length; i ++) ListTile (
           contentPadding: EdgeInsets.symmetric (horizontal: MediaQuery.of (context).size.width * 0.05),
-          dense: test.answers [i],
           onTap: () => showSheet (context, test.book.vocabularies [test.orders [i]], AnswerIcon (test.answers [i])),
           leading: Text ((i + 1).toString (),
             maxLines: 1,
@@ -414,7 +412,10 @@ class _TestScreenState extends State <TestScreen> {
         ),
         const ListTile (dense: true),
         GestureDetector (
-          onTap: () => setState (() => _isAnswered = !_isAnswered),
+          onTap: () => setState (() {
+            _isAnswered = !_isAnswered;
+            _isOpened = true;
+          }),
           child: Column (
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -484,7 +485,7 @@ class _TestScreenState extends State <TestScreen> {
       backgroundColor: Theme.of (context).scaffoldBackgroundColor,
       elevation: 10,
       foregroundColor: Colors.black,
-      onPressed: () => _speech.speak (widget.test.book.vocabularies [widget.test.answers.length].word),
+      onPressed: () => _speech.speak (widget.test.book.vocabularies [widget.test.orders [widget.test.answers.length]].word),
       child: Icon (Icons.volume_up_rounded, size: addSize (context)),
     ),
   );
